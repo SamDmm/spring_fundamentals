@@ -21,6 +21,6 @@ class IndexController {
 		} else {
 			boodschap = "Goede avond";
 		}
-		return new ModelAndView("WEB-INF/JSP/index.jsp", "boodschap", boodschap);
+		return new ModelAndView("index", "boodschap", boodschap);
 	}
 }
