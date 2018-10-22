@@ -5,10 +5,11 @@
 <head>
 	<title>Pizza's</title>
 	<c:import url='/WEB-INF/JSP/head.jsp'>
-		<c:param name='title' value='Pizza Luigi'/>
+		<c:param name='title' value="Pizza's"/>
 	</c:import>
 </head>
 <body>
+	<c:import url='/WEB-INF/JSP/menu.jsp'/>
 	<h1>Pizza's
 		<c:forEach begin='1' end='5'>
 			&#9733; <%-- de html code van een ster --%>
@@ -34,5 +35,4 @@
 		</c:forEach>
 	</ul>
 </body>
-<c:import url='/WEB-INF/JSP/menu.jsp'/>
 </html>
