@@ -3,10 +3,9 @@
 <!DOCTYPE html>
 <html lang='nl'>
 <head>
-	<title>Pizza Luigi</title>
-	<link rel='icon' href='images/pizza.ico' type='image/x-icon'>
-	<meta name='viewport' content='width=device-width,initial-scale=1'>
-	<link rel='stylesheet' href='css/pizzaluigi.css'>
+	<c:import url='/WEB-INF/JSP/head.jsp'>
+		<c:param name='title' value='Pizza Luigi'/>
+	</c:import>
 </head>
 <body>
 	<h1>Pizza Luigi</h1>
@@ -21,4 +20,5 @@
 							${zaakvoerder.adres.postcode} ${zaakvoerder.adres.gemeente}</dd>
 	</dl>
 </body>
+<c:import url='/WEB-INF/JSP/menu.jsp'/>
 </html>
