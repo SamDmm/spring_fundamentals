@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,8 +28,8 @@ class PizzaController {
 	ModelAndView pizzas() {
 		return new ModelAndView(PIZZAS_VIEW, "pizzas", pizzas);
 	}
-	@GetMapping(params = "id")
-	ModelAndView pizza(long id) {
+	@GetMapping("{id}")
+	ModelAndView pizza(@PathVariable long id) {
 		ModelAndView modelAndView = new ModelAndView(PIZZA_VIEW);
 		if (pizzas.containsKey(id)) {
 			modelAndView.addObject(pizzas.get(id));
