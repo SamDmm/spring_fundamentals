@@ -15,6 +15,7 @@ import be.vdab.pizzaluigi.entities.Pizza;
 @RequestMapping("pizzas")
 class PizzaController {
 	private static final String PIZZAS_VIEW = "pizzas";
+	private static final String PIZZA_VIEW = "pizza";
 	private final Map<Long, Pizza> pizzas = new LinkedHashMap<>();
 	PizzaController() {
 		pizzas.put(1L, new Pizza(1, "Prosciutto", BigDecimal.valueOf(4), true));
@@ -25,5 +26,13 @@ class PizzaController {
 	@GetMapping
 	ModelAndView pizzas() {
 		return new ModelAndView(PIZZAS_VIEW, "pizzas", pizzas);
+	}
+	@GetMapping(params = "id")
+	ModelAndView pizza(long id) {
+		ModelAndView modelAndView = new ModelAndView(PIZZA_VIEW);
+		if (pizzas.containsKey(id)) {
+			modelAndView.addObject(pizzas.get(id));
+		}
+		return modelAndView;
 	}
 }
