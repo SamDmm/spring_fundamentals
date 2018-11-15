@@ -31,6 +31,7 @@ class FixerKoersClient implements KoersClient {
 			String lijn = scanner.nextLine();
 			int beginPositieKoers = lijn.indexOf("USD") + 5;
 			int accoladePositie = lijn.indexOf('}', beginPositieKoers);
+			LOGGER.info("Koers gelezen via Fixer");
 			return new BigDecimal(lijn.substring(beginPositieKoers,  accoladePositie));
 		} catch (IOException | NumberFormatException ex) {
 			String fout = "kan koers niet lezen via Fixer";
