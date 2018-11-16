@@ -3,7 +3,6 @@ package be.vdab.pizzaluigi.restclients;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.xml.stream.XMLInputFactory;
@@ -13,6 +12,7 @@ import javax.xml.stream.XMLStreamReader;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -23,14 +23,8 @@ import be.vdab.pizzaluigi.exceptions.KoersClientException;
 class ECBKoersClient implements KoersClient {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ECBKoersClient.class);
 	private final URL url;
-	public ECBKoersClient() {
-		try {
-			this.url = new URL("https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml");
-		} catch (MalformedURLException ex){
-			String fout = "ECB URL is verkeerd";
-			LOGGER.error(fout, ex);
-			throw new KoersClientException(fout);
-		}
+	public ECBKoersClient(@Value("${ecbKoersURL}") URL url) {
+		this.url = url;
 	}
 	@Override
 	public BigDecimal getDollarKoers() {
