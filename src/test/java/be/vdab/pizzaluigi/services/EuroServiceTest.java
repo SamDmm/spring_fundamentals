@@ -22,12 +22,11 @@ public class EuroServiceTest {
 	@Before
 	public void before() {
 		when(dummyKoersClient.getDollarKoers()).thenReturn(BigDecimal.valueOf(1.5));
-		euroService = new DefaultEuroService(dummyKoersClient);
+		euroService = new DefaultEuroService(new KoersClient[] {dummyKoersClient});
 	}
 	@Test
 	public void naarDollar() {
 		assertEquals(0, BigDecimal.valueOf(3).compareTo(euroService.naarDollar(BigDecimal.valueOf(2))));
 		verify(dummyKoersClient).getDollarKoers();
 	}
-
 }

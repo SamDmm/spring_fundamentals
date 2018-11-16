@@ -8,11 +8,13 @@ import java.util.Scanner;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import be.vdab.pizzaluigi.exceptions.KoersClientException;
 
 @Component
+@Order(1)
 class FixerKoersClient implements KoersClient {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FixerKoersClient.class);
 	private final URL url;
