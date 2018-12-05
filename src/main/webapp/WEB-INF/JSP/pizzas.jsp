@@ -16,11 +16,11 @@
 		</c:forEach>
 	</h1>
 	<ul class='zebra'>
-		<c:forEach var='entry' items='${pizzas}'>
+		<c:forEach var='pizza' items='${pizzas}'>
 			<li>
-			${entry.key}: <c:out value='${entry.value.naam}'/> ${entry.value.prijs} &euro;
+			${pizza.id}: <c:out value='${pizza.naam}'/> ${pizza.prijs} &euro;
 				<c:choose>
-					<c:when test='${entry.value.pikant}'>
+					<c:when test='${pizza.pikant}'>
 						pikant
 					</c:when>
 					<c:otherwise>
@@ -28,7 +28,7 @@
 					</c:otherwise>
 				</c:choose>
 				<spring:url value='/pizzas/{id}' var='url'>
-					<spring:param name='id' value='${entry.key}'/>
+					<spring:param name='id' value='${pizza.id}'/>
 				</spring:url>
 				<a href='${url}'>Detail</a>
 			</li>
