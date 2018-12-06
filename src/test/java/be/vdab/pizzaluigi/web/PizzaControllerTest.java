@@ -7,7 +7,6 @@ import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.junit.Before;
@@ -26,36 +25,36 @@ public class PizzaControllerTest {
 	@Mock
 	private PizzaService dummyPizzaService;
 	private EuroService dummyEuroService;
-	private PizzaController controller;
+	private PizzaController pizzaController;
 	@Before
 	public void before() {
 		when(dummyPizzaService.read(1)).thenReturn(Optional.of(new Pizza(1, "Test", BigDecimal.ONE, true)));
-		controller = new PizzaController(dummyEuroService, dummyPizzaService);
+		pizzaController = new PizzaController(dummyEuroService, dummyPizzaService);
 	}
 	@Test
 	public void pizzaWerktSamenMetDeJspPizza() {
-		ModelAndView modelAndView = controller.pizza(1);
+		ModelAndView modelAndView = pizzaController.pizza(1);
 		assertEquals("pizza", modelAndView.getViewName());
 	}
 	@Test
 	public void pizzaGeeftPizzaDoor() {
-		ModelAndView modelAndView = controller.pizza(1);
-		assertTrue(modelAndView.getModel().get("pizza") instanceof List);
+		ModelAndView modelAndView = pizzaController.pizza(1);
+		assertTrue(modelAndView.getModel().get("pizza") instanceof Pizza);
 	}
 	@Test
 	public void onbestaandePizza() {
-		ModelAndView modelAndView = controller.pizza(-1);
+		ModelAndView modelAndView = pizzaController.pizza(-1);
 		assertFalse(modelAndView.getModel().containsKey("pizza"));
 	}
 	@Test
 	public void pizzaWerktSamenMetDeJspPizzas() {
-		ModelAndView modelAndView = controller.pizzas();
+		ModelAndView modelAndView = pizzaController.pizzas();
 		assertEquals("pizzas", modelAndView.getViewName());
 	}
 	@Test
-	public void pizzaGeeftPizzasDoor() {
-		ModelAndView modelAndView = controller.pizzas();
-		assertTrue(modelAndView.getModel().get("pizzas") instanceof Map);
+	public void pizzasGeeftPizzasDoor() {
+		ModelAndView modelAndView = pizzaController.pizzas();
+		assertTrue(modelAndView.getModel().get("pizzas") instanceof List);
 	}
 
 }
