@@ -9,7 +9,7 @@
   </c:import>
 </head>
 <body>
-<c:import url="WEB-INF/JSP/menu.jsp"></c:import>
+<c:import url="/WEB-INF/JSP/menu.jsp"></c:import>
 <h1>Toevoegen</h1>
 <c:url value="/pizzas/toevoegen" var="url"/>
 <form:form action="${url}" modelAttribute='pizza' method="post" id="pizzaform">
