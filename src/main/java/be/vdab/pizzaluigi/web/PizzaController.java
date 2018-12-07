@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -72,5 +73,19 @@ class PizzaController {
 			modelAndView.addObject("pizzas", pizzas);
 		}
 		return modelAndView;
+	}
+	private static final String TOEVOEGEN_VIEW = "toevoegen";
+	@GetMapping("toevoegen")
+	ModelAndView pizzaToevoegen() {
+		ModelAndView modelAndView = new ModelAndView(TOEVOEGEN_VIEW).addObject(new Pizza());
+		return modelAndView;
+	}
+	@PostMapping("toevoegen")
+	ModelAndView toevoegen(@Valid Pizza pizza, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return new ModelAndView(TOEVOEGEN_VIEW);
+		}
+		pizzaService.create(pizza);
+		return new ModelAndView(PIZZAS_VIEW, "pizzas", pizzaService.findAll());
 	}
 }
