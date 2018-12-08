@@ -23,6 +23,7 @@ class PizzaController {
 	private static final String PIZZAS_VIEW = "pizzas";
 	private final EuroService euroService;
 	private final PizzaService pizzaService;
+	private static final String REDIRECT_URL_NA_TOEVOEGEN="redirect:/pizzas";
 	PizzaController(EuroService euroService, PizzaService pizzaService) {
 		this.euroService = euroService;
 		this.pizzaService = pizzaService;
@@ -86,6 +87,6 @@ class PizzaController {
 			return new ModelAndView(TOEVOEGEN_VIEW);
 		}
 		pizzaService.create(pizza);
-		return new ModelAndView(PIZZAS_VIEW, "pizzas", pizzaService.findAll());
+		return new ModelAndView(REDIRECT_URL_NA_TOEVOEGEN);
 	}
 }
