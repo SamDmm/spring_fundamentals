@@ -10,6 +10,9 @@
 </head>
 <body>
   <c:import url='/WEB-INF/JSP/menu.jsp'/>
+  <c:if test='${not empty param.boodschap}'>
+    <div class='boodschap'>${param.boodschap}</div>
+  </c:if>
   <h1>Pizza's
     <c:forEach begin='1' end='5'>
       &#9733; <%-- de html code van een ster --%>
@@ -34,5 +37,10 @@
       </li>
     </c:forEach>
   </ul>
+  <script>
+    document.getElementById('pizzaform').onsubmit = function() {
+    	document.getElementById('toevoegknop').disabled = true;
+    };
+  </script>
 </body>
 </html>
